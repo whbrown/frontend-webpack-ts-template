@@ -1,0 +1,22 @@
+:root {
+  font-size: 10px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  background: #2B3A42;
+  color: #A5CEE1;
+}
+
+.title {
+  font-size: 4rem;
+  font-weight: 300;
+  margin-top: 10%;
+}
