@@ -1,21 +1,31 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const {CleanWebpackPlugin} = require("clean-webpack-plugin");
 
 module.exports = {
   mode: "development",
   devtool: 'inline-source-map',
   entry: {
-    main: "./src/index.ts",
-    // vendor: "./src/vendor.ts"
+    main: "./src/index.ts"
   },
-  watch: true,
   output: {
-    filename: "bundle.[contentHash].js",
-    path: path.resolve(__dirname, "dist")
+    path: path.resolve(__dirname, "dist"),
+    filename: "[name].[contentHash].bundle.js",
+    chunkFilename: "[name].[contentHash].bundle.js",
+    // publicPath: '/',
+  },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+       vendor: {
+        test: /node_modules/,
+        chunks: 'initial',
+        name: 'vendor',
+        enforce: true
+       },
+      }
+    }
   },
   plugins: [
-    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: "./src/template.html"
     })
@@ -47,9 +57,3 @@ module.exports = {
     extensions: [ '.tsx', '.ts', '.js' ],
   },
 };
-
-/*
-
-
-
-      */
