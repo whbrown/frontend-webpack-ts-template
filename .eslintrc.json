@@ -24,6 +24,8 @@
     ]
   },
   "ignorePatterns": [
-    "*.js"
+    "*.js",
+    "*.spec.ts",
+    "*.test.ts"
   ]
 }

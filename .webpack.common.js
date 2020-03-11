@@ -1,5 +1,5 @@
 const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+import Dotenv from 'dotenv-webpack';
 
 module.exports = {
   mode: "development",
@@ -8,10 +8,9 @@ module.exports = {
     main: "./src/index.ts"
   },
   output: {
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, "build"),
     filename: "[name].[contentHash].bundle.js",
-    chunkFilename: "[name].[contentHash].bundle.js",
-    // publicPath: '/',
+    chunkFilename: "[name].[contentHash].bundle.js"
   },
   optimization: {
     splitChunks: {
@@ -26,26 +25,10 @@ module.exports = {
     }
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: "./src/template.html"
-    })
+    new Dotenv()
   ],
   module: {
     rules: [
-      {
-        test: /\.html$/,
-        use: ["html-loader"]
-      },
-      {
-        test: /\.(svg|png|jpg|gif)$/,
-        use: {
-          loader: "file-loader",
-          options: {
-            name: "[name].[hash].[ext]",
-            outputPath: "imgs"
-          }
-        }
-      },
       {
         test: /\.tsx?$/,
         use: 'ts-loader',
